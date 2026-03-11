@@ -1,4 +1,4 @@
-const API_URL = 'https://to-do-app-backend-xr8f.onrender.com';
+const API_URL = 'to-do-app-frontend-taupe.vercel.app';
 
 //===================================
 // Helper arrow functions
@@ -44,9 +44,13 @@ const setLoading = (isLoading) => {
 //===================================
 
 const signupForm = document.getElementById('signupForm');
+const submitBtn = document.getElementById('submitBtn');
 
 if (signupForm) {
-  document.getElementById('submitBtn').dataset.defaultText = 'Create Account';
+
+  if (submitBtn) {
+    submitBtn.dataset.defaultText = 'Create Account';
+  }
 
   signupForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -69,28 +73,34 @@ if (signupForm) {
     setLoading(true);
 
     try {
-      const response = await fetch(`https://to-do-app-backend-xr8f.onrender.com`, {
+      const response = await fetch(`${API_URL}/auth/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ name, email, password })
       });
 
       const data = await response.json();
 
       if (!response.ok) {
-        showError(data.error || 'something went wrong.');
+        showError(data.error || data.message || 'Something went wrong.');
         return;
       }
 
       showSuccess('Account created! Redirecting to login...');
-      setTimeout(() => (window.location.href = './login.html'), 1000);
+      setTimeout(() => {
+        window.location.href = './login.html';
+      }, 1000);
+
     } catch (error) {
       showError('Could not connect to the server. Is it running?');
+      console.error(error);
     } finally {
       setLoading(false);
     }
   });
+
 }
+
 
 //===================================
 // Login
