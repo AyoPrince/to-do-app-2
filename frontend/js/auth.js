@@ -69,7 +69,7 @@ if (signupForm) {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_URL}/auth/signup`, {
+      const response = await fetch(`https://to-do-app-backend-xr8f.onrender.com`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password }),
