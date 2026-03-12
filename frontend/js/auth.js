@@ -84,7 +84,7 @@ if (signupForm) {
       if (!response.ok) {
         showError(data.error || data.message || 'Something went wrong.');
         return;
-      }
+      } 
 
       showSuccess('Account created! Redirecting to login...');
       setTimeout(() => {
