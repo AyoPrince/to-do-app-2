@@ -2,7 +2,7 @@
 // API CONFIGURATION
 // =========================================
 
-const API_URL = 'to-do-app-frontend-taupe.vercel.app';
+const API_URL = 'https://to-do-app-backend-xr8f.onrender.com';
 
 // =========================================
 // Protect Dashboard.html
